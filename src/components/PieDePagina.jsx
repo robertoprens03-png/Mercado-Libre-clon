@@ -52,17 +52,26 @@ export default function Footer({ onCategorySelect = () => {} }) {
         {/* Informacion inferior */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           <div>
-            <h5 className="font-bold text-white mb-2">📦 Envio gratis</h5>
+            <h5 className="font-bold text-white mb-2 flex items-center gap-2">
+              <svg className="w-5 h-5 text-ml-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" /></svg>
+              Envio gratis
+            </h5>
             <p className="text-xs">Compra en millones de productos con envio gratis</p>
           </div>
 
           <div>
-            <h5 className="font-bold text-white mb-2">🛡️ Compra protegida</h5>
+            <h5 className="font-bold text-white mb-2 flex items-center gap-2">
+              <svg className="w-5 h-5 text-ml-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+              Compra protegida
+            </h5>
             <p className="text-xs">Dinero de vuelta si no lo recibes o no es lo que esperabas</p>
           </div>
 
           <div>
-            <h5 className="font-bold text-white mb-2">💳 Pago seguro</h5>
+            <h5 className="font-bold text-white mb-2 flex items-center gap-2">
+              <svg className="w-5 h-5 text-ml-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" /></svg>
+              Pago seguro
+            </h5>
             <p className="text-xs">Tus datos siempre protegidos</p>
           </div>
         </div>

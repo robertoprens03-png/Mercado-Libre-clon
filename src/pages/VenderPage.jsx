@@ -140,10 +140,10 @@ export default function VenderPage({
         {/* Hero */}
         <section className="bg-ml-yellow py-16">
           <div className="max-w-5xl mx-auto px-4 text-center">
-            <h1 className="text-5xl font-bold text-gray-900 mb-4">
+            <h1 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4">
               Vendé en Mercado Libre
             </h1>
-            <p className="text-xl text-gray-700 mb-8 max-w-2xl mx-auto">
+            <p className="text-base md:text-xl text-gray-700 mb-8 max-w-2xl mx-auto">
               Llegá a millones de compradores y hacé crecer tu negocio con la plataforma de e-commerce líder en Latinoamérica.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -174,7 +174,7 @@ export default function VenderPage({
                 { value: '99%', label: 'Satisfacción compradores' },
               ].map((stat) => (
                 <div key={stat.label}>
-                  <p className="text-4xl font-bold text-ml-blue">{stat.value}</p>
+                  <p className="text-2xl md:text-4xl font-bold text-ml-blue">{stat.value}</p>
                   <p className="text-gray-600 text-sm mt-1">{stat.label}</p>
                 </div>
               ))}
@@ -204,7 +204,7 @@ export default function VenderPage({
             <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">
               ¿Cómo funciona?
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
               {steps.map((s) => (
                 <div key={s.number} className="text-center">
                   <div className="w-14 h-14 rounded-full bg-ml-yellow text-gray-900 font-bold text-2xl flex items-center justify-center mx-auto mb-4 shadow">

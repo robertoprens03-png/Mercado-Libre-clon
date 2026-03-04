@@ -41,7 +41,7 @@ export default function Banner() {
     }
 
     return (
-        <div className="relative w-full h-96 bg-ml-gray overflow-hidden">
+        <div className="relative w-full h-48 sm:h-64 md:h-80 lg:h-96 bg-ml-gray overflow-hidden">
             {/* Slides */}
             <div className="relative h-full">
                 {slides.map((slide, index) => (
@@ -62,13 +62,13 @@ export default function Banner() {
             {/* Botones de navegación */}
             <button
                 onClick={prevSlide}
-                className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-70 hover:bg-opacity-100 text-ml-blue rounded-full w-12 h-12 flex items-center justify-center transition z-10"
+                className="absolute left-2 md:left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-70 hover:bg-opacity-100 text-ml-blue rounded-full w-8 h-8 md:w-12 md:h-12 flex items-center justify-center transition z-10 text-sm md:text-base"
             >
                 ❮
             </button>
             <button
                 onClick={nextSlide}
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-70 hover:bg-opacity-100 text-ml-blue rounded-full w-12 h-12 flex items-center justify-center transition z-10"
+                className="absolute right-2 md:right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-70 hover:bg-opacity-100 text-ml-blue rounded-full w-8 h-8 md:w-12 md:h-12 flex items-center justify-center transition z-10 text-sm md:text-base"
             >
                 ❯
             </button>

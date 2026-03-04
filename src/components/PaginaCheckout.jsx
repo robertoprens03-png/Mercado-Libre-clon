@@ -35,7 +35,9 @@ export default function CheckoutPage({ cart, onRemoveFromCart, onPurchase }) {
   if (purchased) {
     return (
       <div className="max-w-4xl mx-auto px-4 py-20 text-center">
-        <div className="text-6xl mb-4">🎉</div>
+        <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-green-100 flex items-center justify-center">
+          <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
+        </div>
         <h2 className="text-2xl font-bold text-ml-blue mb-2">¡Compra confirmada!</h2>
         <p className="text-gray-600 mb-6">Tu pedido fue registrado. Podés seguirlo en <strong>Mis compras</strong>.</p>
         <div className="flex gap-4 justify-center">
@@ -59,7 +61,9 @@ export default function CheckoutPage({ cart, onRemoveFromCart, onPurchase }) {
   if (cart.length === 0) {
     return (
       <div className="max-w-4xl mx-auto px-4 py-20 text-center">
-        <div className="text-6xl mb-4">🛒</div>
+        <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gray-100 flex items-center justify-center">
+          <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+        </div>
         <h2 className="text-2xl font-bold text-ml-blue mb-2">Carrito vacio</h2>
         <p className="text-gray-600 mb-6">Agrega productos para proceder con la compra</p>
         <button
@@ -74,7 +78,7 @@ export default function CheckoutPage({ cart, onRemoveFromCart, onPurchase }) {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold text-ml-blue mb-8">Resumen de Compra</h1>
+      <h1 className="text-2xl md:text-3xl font-bold text-ml-blue mb-6 md:mb-8">Resumen de Compra</h1>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Productos */}
@@ -86,7 +90,7 @@ export default function CheckoutPage({ cart, onRemoveFromCart, onPurchase }) {
             
             <div className="space-y-4">
               {cart.map((item) => (
-                <div key={item.id} className="flex gap-4 border-b pb-4 last:border-b-0">
+                <div key={item.id} className="flex flex-col sm:flex-row gap-4 border-b pb-4 last:border-b-0">
                   <img
                     src={item.image}
                     alt={item.name}
@@ -170,7 +174,7 @@ export default function CheckoutPage({ cart, onRemoveFromCart, onPurchase }) {
                   className="w-4 h-4"
                 />
                 <div>
-                  <p className="font-bold text-gray-900">💳 Tarjeta de Crédito/Débito</p>
+                  <p className="font-bold text-gray-900">Tarjeta de Credito/Debito</p>
                   <p className="text-sm text-gray-600">Visa, Mastercard, Amex</p>
                 </div>
               </label>
@@ -185,7 +189,7 @@ export default function CheckoutPage({ cart, onRemoveFromCart, onPurchase }) {
                   className="w-4 h-4"
                 />
                 <div>
-                  <p className="font-bold text-gray-900">🏦 Transferencia Bancaria</p>
+                  <p className="font-bold text-gray-900">Transferencia Bancaria</p>
                   <p className="text-sm text-gray-600">Bancos participantes</p>
                 </div>
               </label>
@@ -200,7 +204,7 @@ export default function CheckoutPage({ cart, onRemoveFromCart, onPurchase }) {
                   className="w-4 h-4"
                 />
                 <div>
-                  <p className="font-bold text-gray-900">💰 Efectivo en Tienda</p>
+                  <p className="font-bold text-gray-900">Efectivo en Tienda</p>
                   <p className="text-sm text-gray-600">Recoge en ubicación cercana</p>
                 </div>
               </label>
@@ -234,7 +238,7 @@ export default function CheckoutPage({ cart, onRemoveFromCart, onPurchase }) {
 
             <div className="bg-ml-yellow rounded p-4">
               <p className="text-sm text-ml-blue mb-1">Total a pagar:</p>
-              <p className="text-3xl font-bold text-ml-blue">
+              <p className="text-2xl md:text-3xl font-bold text-ml-blue">
                 {formatPrice(total)}
               </p>
             </div>

@@ -38,12 +38,12 @@ const faqs = [
 ]
 
 const helpCategories = [
-  { icon: '📦', title: 'Mis compras', desc: 'Seguimiento y estado de pedidos' },
-  { icon: '💳', title: 'Pagos', desc: 'Métodos de pago y facturación' },
-  { icon: '🚚', title: 'Envíos', desc: 'Información sobre envíos y entregas' },
-  { icon: '↩️', title: 'Devoluciones', desc: 'Política de devoluciones y reembolsos' },
-  { icon: '🔒', title: 'Seguridad', desc: 'Protección de cuenta y datos' },
-  { icon: '🛍️', title: 'Vendedores', desc: 'Ayuda para publicar y vender' },
+  { icon: 'box', title: 'Mis compras', desc: 'Seguimiento y estado de pedidos' },
+  { icon: 'card', title: 'Pagos', desc: 'Metodos de pago y facturacion' },
+  { icon: 'truck', title: 'Envios', desc: 'Informacion sobre envios y entregas' },
+  { icon: 'return', title: 'Devoluciones', desc: 'Politica de devoluciones y reembolsos' },
+  { icon: 'lock', title: 'Seguridad', desc: 'Proteccion de cuenta y datos' },
+  { icon: 'shop', title: 'Vendedores', desc: 'Ayuda para publicar y vender' },
 ]
 
 export default function AyudaPage({
@@ -77,8 +77,8 @@ export default function AyudaPage({
         {/* Hero */}
         <section className="bg-ml-yellow py-12">
           <div className="max-w-3xl mx-auto px-4 text-center">
-            <h1 className="text-4xl font-bold text-gray-900 mb-3">¿En qué podemos ayudarte?</h1>
-            <p className="text-gray-700 text-lg mb-6">Encontrá respuestas a las preguntas más frecuentes</p>
+            <h1 className="text-2xl md:text-4xl font-bold text-gray-900 mb-3">¿En qué podemos ayudarte?</h1>
+            <p className="text-gray-700 text-base md:text-lg mb-6">Encontrá respuestas a las preguntas más frecuentes</p>
             <div className="relative max-w-xl mx-auto">
               <input
                 type="text"
@@ -98,16 +98,26 @@ export default function AyudaPage({
         <section className="max-w-5xl mx-auto px-4 py-12">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">Temas de ayuda</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            {helpCategories.map((cat) => (
+            {helpCategories.map((cat) => {
+              const iconMap = {
+                box: <svg className="w-7 h-7 text-ml-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" /></svg>,
+                card: <svg className="w-7 h-7 text-ml-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" /></svg>,
+                truck: <svg className="w-7 h-7 text-ml-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10M13 16H3m10 0h4.5M21 16h-1.5M16.5 16a2.5 2.5 0 11-5 0m5 0a2.5 2.5 0 10-5 0M3 16a2.5 2.5 0 005 0M3 16a2.5 2.5 0 015 0m0 0h5" /></svg>,
+                return: <svg className="w-7 h-7 text-ml-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" /></svg>,
+                lock: <svg className="w-7 h-7 text-ml-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>,
+                shop: <svg className="w-7 h-7 text-ml-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>,
+              }
+              return (
               <div
                 key={cat.title}
                 className="bg-white rounded-xl p-5 shadow-sm hover:shadow-md transition border border-gray-100 cursor-pointer"
               >
-                <div className="text-3xl mb-3">{cat.icon}</div>
+                <div className="mb-3">{iconMap[cat.icon]}</div>
                 <h3 className="font-bold text-gray-900 mb-1">{cat.title}</h3>
                 <p className="text-sm text-gray-500">{cat.desc}</p>
               </div>
-            ))}
+              )
+            })}
           </div>
         </section>
 

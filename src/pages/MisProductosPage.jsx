@@ -89,7 +89,7 @@ export default function MisProductosPage({
             {products.map((product) => (
               <div
                 key={product.id}
-                className="bg-white rounded-xl shadow-sm border border-gray-100 p-5 flex gap-5 items-start"
+                className="bg-white rounded-xl shadow-sm border border-gray-100 p-4 md:p-5 flex flex-col sm:flex-row gap-4 md:gap-5 items-start"
               >
                 {/* Imagen */}
                 {product.imageUrl ? (

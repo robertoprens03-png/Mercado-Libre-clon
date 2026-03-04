@@ -82,11 +82,11 @@ const ProductDetailPage = ({
       <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Product Image */}
-          <div className="bg-white rounded-lg shadow-sm p-6 flex items-center justify-center min-h-96">
+          <div className="bg-white rounded-lg shadow-sm p-4 md:p-6 flex items-center justify-center min-h-48 md:min-h-96">
             <img
               src={product.image}
               alt={product.name}
-              className="max-w-sm h-96 object-contain"
+                className="max-w-full md:max-w-sm h-48 sm:h-64 md:h-96 object-contain"
             />
           </div>
 
@@ -100,7 +100,7 @@ const ProductDetailPage = ({
             </div>
 
             {/* Title */}
-            <h1 className="text-4xl font-bold text-gray-900">{product.name}</h1>
+            <h1 className="text-2xl md:text-4xl font-bold text-gray-900">{product.name}</h1>
 
             {/* Rating */}
             <div className="flex items-center space-x-2">
@@ -121,7 +121,7 @@ const ProductDetailPage = ({
               <div className="mb-4">
                 <p className="text-gray-600 text-sm mb-2">Precio</p>
                 <div className="flex items-baseline space-x-2">
-                  <span className="text-4xl font-bold text-gray-900">
+                    <span className="text-2xl md:text-4xl font-bold text-gray-900">
                     {formatPrice(product.price)}
                   </span>
                   {discount > 0 && (
@@ -204,7 +204,10 @@ const ProductDetailPage = ({
                     : 'bg-gray-100 text-gray-700 border border-gray-300 hover:bg-gray-200'
                 }`}
               >
-                <span className="text-2xl">{favoriteState ? '❤️' : '🤍'}</span>
+                <span className="text-2xl">{favoriteState
+                  ? <svg className="w-7 h-7 text-red-500 inline" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" /></svg>
+                  : <svg className="w-7 h-7 text-gray-400 inline" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" /></svg>
+                }</span>
                 <span>{favoriteState ? 'Agregado a favoritos' : 'Agregar a favoritos'}</span>
               </button>
             </div>

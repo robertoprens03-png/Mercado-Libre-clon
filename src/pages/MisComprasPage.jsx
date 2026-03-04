@@ -40,18 +40,18 @@ export default function MyPurchasesPage({
         onCategorySelect={onCategorySelect}
       />
 
-      <main className="flex-1 max-w-7xl mx-auto w-full py-8">
+      <main className="flex-1 max-w-7xl mx-auto w-full px-4 py-6 md:py-8">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">Mis compras</h1>
-          <p className="text-gray-600">Historial y estado de todas tus compras</p>
+        <div className="mb-6 md:mb-8">
+          <h1 className="text-2xl md:text-4xl font-bold text-gray-900 mb-2">Mis compras</h1>
+          <p className="text-gray-600 text-sm md:text-base">Historial y estado de todas tus compras</p>
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-0 border-b border-gray-200 bg-white rounded-t-lg overflow-hidden mb-0">
+        <div className="flex gap-0 border-b border-gray-200 bg-white rounded-t-lg overflow-x-auto mb-0 scrollbar-hide">
           <button
             onClick={() => setSelectedTab('all')}
-            className={`flex-1 py-4 px-6 text-sm font-medium transition border-b-2 ${
+            className={`flex-shrink-0 md:flex-1 py-3 md:py-4 px-3 md:px-6 text-xs md:text-sm font-medium transition border-b-2 whitespace-nowrap ${
               selectedTab === 'all'
                 ? 'text-ml-blue border-ml-blue'
                 : 'text-gray-600 hover:text-gray-900 border-transparent'
@@ -62,7 +62,7 @@ export default function MyPurchasesPage({
           </button>
           <button
             onClick={() => setSelectedTab('pending')}
-            className={`flex-1 py-4 px-6 text-sm font-medium transition border-b-2 ${
+            className={`flex-shrink-0 md:flex-1 py-3 md:py-4 px-3 md:px-6 text-xs md:text-sm font-medium transition border-b-2 whitespace-nowrap ${
               selectedTab === 'pending'
                 ? 'text-ml-blue border-ml-blue'
                 : 'text-gray-600 hover:text-gray-900 border-transparent'
@@ -75,7 +75,7 @@ export default function MyPurchasesPage({
           </button>
           <button
             onClick={() => setSelectedTab('completed')}
-            className={`flex-1 py-4 px-6 text-sm font-medium transition border-b-2 ${
+            className={`flex-shrink-0 md:flex-1 py-3 md:py-4 px-3 md:px-6 text-xs md:text-sm font-medium transition border-b-2 whitespace-nowrap ${
               selectedTab === 'completed'
                 ? 'text-ml-blue border-ml-blue'
                 : 'text-gray-600 hover:text-gray-900 border-transparent'
@@ -88,7 +88,7 @@ export default function MyPurchasesPage({
           </button>
           <button
             onClick={() => setSelectedTab('cancelled')}
-            className={`flex-1 py-4 px-6 text-sm font-medium transition border-b-2 ${
+            className={`flex-shrink-0 md:flex-1 py-3 md:py-4 px-3 md:px-6 text-xs md:text-sm font-medium transition border-b-2 whitespace-nowrap ${
               selectedTab === 'cancelled'
                 ? 'text-ml-blue border-ml-blue'
                 : 'text-gray-600 hover:text-gray-900 border-transparent'
@@ -127,12 +127,12 @@ export default function MyPurchasesPage({
               {filteredPurchases.map((purchase) => (
                 <div
                   key={purchase.id}
-                  className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition flex gap-4"
+                  className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition flex flex-col sm:flex-row gap-4"
                 >
                   <img
                     src={purchase.image}
                     alt={purchase.name}
-                    className="w-24 h-24 object-cover rounded"
+                    className="w-full sm:w-24 h-32 sm:h-24 object-cover rounded"
                   />
 
                   <div className="flex-1">
@@ -148,7 +148,7 @@ export default function MyPurchasesPage({
                       {purchase.status === 'pendiente' && (
                         <>
                           <span className="inline-block bg-yellow-100 text-yellow-800 text-xs font-medium px-3 py-1 rounded-full">
-                            ⏳ En proceso de envío
+                            En proceso de envio
                           </span>
                           <span className="text-xs text-gray-500">Entrega estimada: 5-7 días</span>
                         </>
@@ -172,12 +172,12 @@ export default function MyPurchasesPage({
                     </div>
                   </div>
 
-                  <div className="text-right">
-                    <p className="text-2xl font-bold text-gray-900">
+                  <div className="text-left sm:text-right mt-2 sm:mt-0">
+                    <p className="text-xl md:text-2xl font-bold text-gray-900">
                       ${purchase.total.toLocaleString('es-CO')}
                     </p>
                     <p className="text-xs text-gray-500 mt-1">x{purchase.quantity}</p>
-                    <div className="mt-4 flex flex-col gap-2">
+                    <div className="mt-2 sm:mt-4 flex flex-row sm:flex-col gap-2">
                       <button className="text-sm text-ml-blue hover:underline font-medium">
                         Ver detalles
                       </button>

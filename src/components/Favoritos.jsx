@@ -16,10 +16,12 @@ export default function Favorites({ favorites = [], onRemoveFavorite, onAddToCar
   if (favorites.length === 0) {
     return (
       <div className="max-w-7xl mx-auto px-4 py-20 text-center">
-        <div className="text-6xl mb-4">❤️</div>
+        <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-red-50 flex items-center justify-center">
+          <svg className="w-8 h-8 text-red-400" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" /></svg>
+        </div>
         <h2 className="text-2xl font-bold text-ml-blue mb-2">Favoritos vacío</h2>
         <p className="text-gray-600">Aún no has agregado productos a favoritos</p>
-        <p className="text-gray-500 text-sm mt-4">Haz clic en el ❤️ en los productos para agregarlos aquí</p>
+        <p className="text-gray-500 text-sm mt-4">Haz clic en el corazon en los productos para agregarlos aqui</p>
       </div>
     )
   }
@@ -28,8 +30,9 @@ export default function Favorites({ favorites = [], onRemoveFavorite, onAddToCar
     <div className="max-w-7xl mx-auto px-4 py-8">
       {/* Encabezado */}
       <div className="mb-8">
-        <h2 className="text-2xl font-bold text-ml-blue mb-2">
-          ❤️ Mis Favoritos ({favorites.length})
+        <h2 className="text-2xl font-bold text-ml-blue mb-2 flex items-center gap-2">
+          <svg className="w-6 h-6 text-red-500" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" /></svg>
+          Mis Favoritos ({favorites.length})
         </h2>
         <p className="text-gray-600">
           Productos guardados para más tarde
@@ -66,8 +69,8 @@ export default function Favorites({ favorites = [], onRemoveFavorite, onAddToCar
                 }}
               />
               
-              <div className="absolute top-2 left-2 bg-ml-yellow text-ml-blue text-xl">
-                ❤️
+              <div className="absolute top-2 left-2 bg-ml-yellow text-ml-blue">
+                <svg className="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" /></svg>
               </div>
             </div>
 
