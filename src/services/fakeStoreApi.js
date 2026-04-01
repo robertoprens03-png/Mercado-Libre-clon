@@ -150,6 +150,17 @@ function transformPlatziProducts(data) {
     
     // Obtener imagen (Platzi API devuelve array de imágenes)
     const image = item.images?.[0] || item.image || 'https://via.placeholder.com/300x300?text=Producto';
+    
+    // Obtener categoría: puede ser objeto o string
+    let categoryName = 'Otros';
+    let categoryId = '5';
+    
+    if (typeof item.category === 'object' && item.category !== null) {
+      categoryName = item.category.name || 'Otros';
+      categoryId = String(item.category.id || '5');
+    } else if (typeof item.category === 'string') {
+      categoryName = item.category;
+    }
 
     return {
       id: `platzi-${item.id}`,
@@ -158,7 +169,8 @@ function transformPlatziProducts(data) {
       originalPrice: originalPrice,
       discountPercent: discountPercent,
       hasDiscount: hasDiscount,
-      category: item.category?.name || item.category || 'Otros',
+      category: categoryName,
+      categoryId: categoryId,
       image: image,
       pictures: [{ url: image }],
       description: item.description || item.title || 'Sin descripción',
