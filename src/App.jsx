@@ -39,12 +39,12 @@ const convertListedToProduct = (p) => ({
 
 // Categorías disponibles en DummyJSON
 const DUMMY_CATEGORIES = {
-  'smartphones': { key: 'smartphones', name: 'Teléfonos' },
   'laptops': { key: 'laptops', name: 'Laptops' },
   'fragrances': { key: 'fragrances', name: 'Fragancias' },
-  'skincare': { key: 'skincare', name: 'Cuidado de piel' },
+  'furniture': { key: 'furniture', name: 'Muebles' },
   'groceries': { key: 'groceries', name: 'Despensa' },
   'home-decoration': { key: 'home-decoration', name: 'Decoración' },
+  'mens-shoes': { key: 'mens-shoes', name: 'Zapatos Hombre' },
 }
 
 function AppContent() {

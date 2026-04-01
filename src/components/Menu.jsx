@@ -2,12 +2,12 @@ export default function Menu({ onCategorySelect, selectedCategory }) {
   // Categorías de DummyJSON API
   const categories = [
     { id: 'todos', name: 'Todos', categoryId: null },
-    { id: 'smartphones', name: 'Teléfonos', categoryId: 'smartphones' },
     { id: 'laptops', name: 'Laptops', categoryId: 'laptops' },
     { id: 'fragrances', name: 'Fragancias', categoryId: 'fragrances' },
-    { id: 'skincare', name: 'Cuidado de piel', categoryId: 'skincare' },
+    { id: 'furniture', name: 'Muebles', categoryId: 'furniture' },
     { id: 'groceries', name: 'Despensa', categoryId: 'groceries' },
     { id: 'home-decoration', name: 'Decoración', categoryId: 'home-decoration' },
+    { id: 'mens-shoes', name: 'Zapatos Hombre', categoryId: 'mens-shoes' },
   ]
 
   return (

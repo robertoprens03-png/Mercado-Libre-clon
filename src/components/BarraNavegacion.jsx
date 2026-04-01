@@ -37,12 +37,12 @@ export default function Navbar({ onSearch, isLoggedIn, user = null, onLoginClick
   // Categorias de DummyJSON API
   const categories = [
     { id: 'todos', name: 'Todos', apiId: null },
-    { id: 'smartphones', name: 'Teléfonos', apiId: 'smartphones' },
     { id: 'laptops', name: 'Laptops', apiId: 'laptops' },
     { id: 'fragrances', name: 'Fragancias', apiId: 'fragrances' },
-    { id: 'skincare', name: 'Cuidado de piel', apiId: 'skincare' },
+    { id: 'furniture', name: 'Muebles', apiId: 'furniture' },
     { id: 'groceries', name: 'Despensa', apiId: 'groceries' },
     { id: 'home-decoration', name: 'Decoración', apiId: 'home-decoration' },
+    { id: 'mens-shoes', name: 'Zapatos Hombre', apiId: 'mens-shoes' },
   ]
 
   const handleCategorySelect = (categoryId) => {
