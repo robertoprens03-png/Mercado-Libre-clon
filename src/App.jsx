@@ -38,13 +38,13 @@ const convertListedToProduct = (p) => ({
   publishedAt: p.publishedAt,
 })
 
-// Mapeo de categorías de Platzi API (IDs numéricos) a nombres en inglés
+// Mapeo de categorías de Platzi API (IDs numéricos) a nombres en español
 const PLATZI_CATEGORIES = {
-  '1': 'Clothes',
-  '2': 'Electronics',
-  '3': 'Furniture',
-  '4': 'Shoes',
-  '5': 'Miscellaneous',
+  '1': 'Ropa',
+  '2': 'Electrónica',
+  '3': 'Muebles',
+  '4': 'Zapatos',
+  '5': 'Otros',
 }
 
 
