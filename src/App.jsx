@@ -16,7 +16,7 @@ import AyudaPage from './pages/AyudaPage'
 import CarritoPage from './pages/CarritoPage'
 import MisProductosPage from './pages/MisProductosPage'
 import Footer from './components/PieDePagina'
-import { getAllProducts } from './services/fakeStoreApi'
+import { getAllProducts, getProductsByCategory } from './services/dummyJsonApi'
 import { supabase } from './services/supabaseClient'
 
 
@@ -37,13 +37,14 @@ const convertListedToProduct = (p) => ({
   publishedAt: p.publishedAt,
 })
 
-
-const PLATZI_CATEGORIES = {
-  'electronics': { id: 2, name: 'Electrónica' },
-  'clothes': { id: 1, name: 'Ropa' },
-  'furniture': { id: 3, name: 'Muebles' },
-  'shoes': { id: 4, name: 'Zapatos' },
-  'miscellaneous': { id: 5, name: 'Otros' },
+// Categorías disponibles en DummyJSON
+const DUMMY_CATEGORIES = {
+  'smartphones': { key: 'smartphones', name: 'Teléfonos' },
+  'laptops': { key: 'laptops', name: 'Laptops' },
+  'fragrances': { key: 'fragrances', name: 'Fragancias' },
+  'skincare': { key: 'skincare', name: 'Cuidado de piel' },
+  'groceries': { key: 'groceries', name: 'Despensa' },
+  'home-decoration': { key: 'home-decoration', name: 'Decoración' },
 }
 
 function AppContent() {
@@ -101,20 +102,20 @@ function AppContent() {
     localStorage.setItem('ml_favorites', JSON.stringify(favorites))
   }, [favorites])
 
-  // Cargar productos de Platzi API al iniciar
+  // Cargar productos de DummyJSON API al iniciar
   useEffect(() => {
     const loadInitialProducts = async () => {
       setIsLoading(true)
       try {
-        // Cargar de Platzi API
-        const platziProducts = await getAllProducts()
+        // Cargar de DummyJSON API
+        const dummyProducts = await getAllProducts()
         
         // Obtener productos publicados localmente
         const listedRaw = JSON.parse(localStorage.getItem('ml_listed_products') || '[]')
         const listedConverted = listedRaw.map(convertListedToProduct)
         
-        // Solo usar Platzi API, más productos locales publicados
-        const all = [...listedConverted, ...platziProducts]
+        // Combinar productos locales con API
+        const all = [...listedConverted, ...dummyProducts]
         
         setProducts(all)
         setFilteredProducts(all)
@@ -176,13 +177,13 @@ function AppContent() {
     } else if (category === 'ofertas') {
       filtered = products.filter(product => product.originalPrice && product.originalPrice > product.price)
     } else {
-      // Buscar por categoría de Platzi
-      const categoryId = PLATZI_CATEGORIES[category]?.id
-      if (categoryId) {
+      // Buscar por categoría de DummyJSON
+      const categoryKey = DUMMY_CATEGORIES[category]?.key
+      if (categoryKey) {
         filtered = products.filter(product => {
-          // Para productos de Platzi, buscar por categoryId
-          if (product.source === 'platzi') {
-            return product.categoryId === categoryId
+          // Para productos de DummyJSON, buscar por categoryId (que es el nombre de la categoría)
+          if (product.source === 'dummy') {
+            return product.categoryId === categoryKey
           }
           // Para productos publicados localmente
           return product.category === category

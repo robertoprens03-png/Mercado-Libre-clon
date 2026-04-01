@@ -1,12 +1,13 @@
 export default function Menu({ onCategorySelect, selectedCategory }) {
-  // Categorías de Platzi API
+  // Categorías de DummyJSON API
   const categories = [
     { id: 'todos', name: 'Todos', categoryId: null },
-    { id: 'electronics', name: 'Electrónica', categoryId: 2 },
-    { id: 'clothes', name: 'Ropa', categoryId: 1 },
-    { id: 'furniture', name: 'Muebles', categoryId: 3 },
-    { id: 'shoes', name: 'Zapatos', categoryId: 4 },
-    { id: 'miscellaneous', name: 'Otros', categoryId: 5 },
+    { id: 'smartphones', name: 'Teléfonos', categoryId: 'smartphones' },
+    { id: 'laptops', name: 'Laptops', categoryId: 'laptops' },
+    { id: 'fragrances', name: 'Fragancias', categoryId: 'fragrances' },
+    { id: 'skincare', name: 'Cuidado de piel', categoryId: 'skincare' },
+    { id: 'groceries', name: 'Despensa', categoryId: 'groceries' },
+    { id: 'home-decoration', name: 'Decoración', categoryId: 'home-decoration' },
   ]
 
   return (

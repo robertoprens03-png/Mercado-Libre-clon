@@ -34,14 +34,15 @@ export default function Navbar({ onSearch, isLoggedIn, user = null, onLoginClick
   const navigate = useNavigate()
   const location = useLocation()
 
-  // Categorias de Platzi API
+  // Categorias de DummyJSON API
   const categories = [
     { id: 'todos', name: 'Todos', apiId: null },
-    { id: 'electronics', name: 'Electrónica', apiId: 2 },
-    { id: 'clothes', name: 'Ropa', apiId: 1 },
-    { id: 'furniture', name: 'Muebles', apiId: 3 },
-    { id: 'shoes', name: 'Zapatos', apiId: 4 },
-    { id: 'miscellaneous', name: 'Otros', apiId: 5 },
+    { id: 'smartphones', name: 'Teléfonos', apiId: 'smartphones' },
+    { id: 'laptops', name: 'Laptops', apiId: 'laptops' },
+    { id: 'fragrances', name: 'Fragancias', apiId: 'fragrances' },
+    { id: 'skincare', name: 'Cuidado de piel', apiId: 'skincare' },
+    { id: 'groceries', name: 'Despensa', apiId: 'groceries' },
+    { id: 'home-decoration', name: 'Decoración', apiId: 'home-decoration' },
   ]
 
   const handleCategorySelect = (categoryId) => {
