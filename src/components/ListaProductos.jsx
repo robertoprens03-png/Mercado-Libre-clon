@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom'
 import ProductCard from './TarjetaProducto'
 
 export default function ProductList({ products, onAddToCart, isLoading = false, onViewDetails, onAddToFavorites, favorites = [] }) {
+  console.log('📊 ProductList recibido:', { productCount: products?.length || 0, isLoading, productsFirst: products?.[0] })
+  
   if (isLoading) {
     return (
       <div className="max-w-7xl mx-auto px-4 py-20 text-center">
@@ -14,6 +16,7 @@ export default function ProductList({ products, onAddToCart, isLoading = false, 
   }
 
   if (products.length === 0) {
+    console.warn('⚠️ No hay productos para mostrar')
     return (
       <div className="max-w-7xl mx-auto px-4 py-20 text-center">
         <div className="text-8xl mb-6">
@@ -24,6 +27,8 @@ export default function ProductList({ products, onAddToCart, isLoading = false, 
       </div>
     )
   }
+
+  console.log('✅ Mostrando', products.length, 'productos')
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">

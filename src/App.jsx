@@ -20,7 +20,7 @@ import { productsData } from './data/products'
 import { getAllProducts } from './services/fakeStoreApi'
 import { supabase } from './services/supabaseClient'
 
-// Mapeo de categorías FakeStore (inglés) a categorías en español de VenderPage
+
 const convertListedToProduct = (p) => ({
   id: `listed-${p.id}`,
   name: p.title || 'Sin título',
@@ -38,7 +38,7 @@ const convertListedToProduct = (p) => ({
   publishedAt: p.publishedAt,
 })
 
-// Mapeo de categorías FakeStore → categorías español de VenderPage
+
 const FAKESTORE_TO_SPANISH = {
   'electronics':       ['Electrónica'],
   'jewelery':          ['Joyería', 'Belleza y Salud'],
@@ -50,7 +50,7 @@ function AppContent() {
   const location = useLocation()
   const navigate = useNavigate()
 
-  // Scroll al tope cuando cambia la ruta
+
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [location.pathname])
@@ -73,7 +73,6 @@ function AppContent() {
     return saved ? JSON.parse(saved) : []
   })
 
-  // Escuchar cambios de sesión de Supabase
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session?.user) {
@@ -97,28 +96,42 @@ function AppContent() {
     return () => subscription.unsubscribe()
   }, [])
 
-  // Persistir favoritos en localStorage
+
   useEffect(() => {
     localStorage.setItem('ml_favorites', JSON.stringify(favorites))
   }, [favorites])
 
-  // Cargar productos de FakeStore API al iniciar y mezclar con publicados en localStorage
+  // Cargar productos locales al iniciar y mezclar con publicados en localStorage
   useEffect(() => {
     const loadInitialProducts = async () => {
       setIsLoading(true)
       try {
+        console.log('🚀 Iniciando carga de productos...')
+        
+        // Intentar FakeStore (pero probablemente fallará por CORS en producción)
         const fakeStoreProducts = await getAllProducts()
+        console.log('📦 Productos de FakeStore:', fakeStoreProducts?.length || 0)
+        
+        // Obtener productos publicados localmente
         const listedRaw = JSON.parse(localStorage.getItem('ml_listed_products') || '[]')
         const listedConverted = listedRaw.map(convertListedToProduct)
+        console.log('📝 Productos publicados localmente:', listedConverted.length)
+        
+        // Usar FakeStore si hay productos, si no usar datos locales
         const base = (fakeStoreProducts && fakeStoreProducts.length > 0) ? fakeStoreProducts : productsData
+        console.log(`📚 Usando ${base === fakeStoreProducts ? 'FakeStore' : 'datos locales'}:`, base.length, 'productos')
+        
         const all = [...listedConverted, ...base]
+        console.log('✅ Total de productos a mostrar:', all.length)
+        
         setProducts(all)
         setFilteredProducts(all)
       } catch (error) {
-        console.error('Error cargando productos de FakeStore:', error)
+        console.error('❌ Error cargando productos:', error)
         const listedRaw = JSON.parse(localStorage.getItem('ml_listed_products') || '[]')
         const listedConverted = listedRaw.map(convertListedToProduct)
         const all = [...listedConverted, ...productsData]
+        console.log('⚠️ Usando fallback. Total productos:', all.length)
         setProducts(all)
         setFilteredProducts(all)
       } finally {
