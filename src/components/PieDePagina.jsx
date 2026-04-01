@@ -17,13 +17,19 @@ export default function Footer({ onCategorySelect = () => {} }) {
             <h4 className="font-bold text-white mb-4">Categorias</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <button onClick={() => handleCategory('electronics')} className="hover:text-ml-yellow transition">Electronica</button>
+                <button onClick={() => handleCategory('2')} className="hover:text-ml-yellow transition">🔌 Electrónica</button>
               </li>
               <li>
-                <button onClick={() => handleCategory("women's clothing")} className="hover:text-ml-yellow transition">Moda</button>
+                <button onClick={() => handleCategory('1')} className="hover:text-ml-yellow transition">👕 Ropa</button>
               </li>
               <li>
-                <button onClick={() => handleCategory('jewelery')} className="hover:text-ml-yellow transition">Accesorios</button>
+                <button onClick={() => handleCategory('3')} className="hover:text-ml-yellow transition">🛋️ Muebles</button>
+              </li>
+              <li>
+                <button onClick={() => handleCategory('4')} className="hover:text-ml-yellow transition">👟 Zapatos</button>
+              </li>
+              <li>
+                <button onClick={() => handleCategory('5')} className="hover:text-ml-yellow transition">🎁 Otros</button>
               </li>
             </ul>
           </div>

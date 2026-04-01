@@ -38,13 +38,15 @@ const convertListedToProduct = (p) => ({
   publishedAt: p.publishedAt,
 })
 
-
-const FAKESTORE_TO_SPANISH = {
-  'electronics':       ['Electrónica'],
-  'jewelery':          ['Joyería', 'Belleza y Salud'],
-  "men's clothing":    ['Ropa y Moda', 'Deportes'],
-  "women's clothing":  ['Ropa y Moda'],
+// Mapeo de categorías de Platzi API (IDs numéricos) a nombres legibles
+const PLATZI_CATEGORIES = {
+  '1': 'Ropa',
+  '2': 'Electrónica',
+  '3': 'Muebles',
+  '4': 'Zapatos',
+  '5': 'Otros',
 }
+
 
 function AppContent() {
   const location = useLocation()
@@ -186,11 +188,16 @@ function AppContent() {
     } else if (category === 'ofertas') {
       filtered = products.filter(product => product.originalPrice && product.originalPrice > product.price)
     } else {
-      const spanishEquivs = FAKESTORE_TO_SPANISH[category] || []
-      filtered = products.filter(product =>
-        product.category === category ||
-        (product.source === 'local' && spanishEquivs.includes(product.category))
-      )
+      // Platzi API usa números como IDs de categoría
+      const categoryId = category
+      const categoryName = PLATZI_CATEGORIES[categoryId] || category
+      
+      filtered = products.filter(product => {
+        // Buscar por categoría exacta o por nombre de categoría
+        return product.category === categoryId || 
+               product.category === categoryName ||
+               product.category === parseInt(categoryId)
+      })
     }
     setSelectedCategory(category)
     setFilteredProducts(filtered)
