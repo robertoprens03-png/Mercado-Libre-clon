@@ -16,7 +16,6 @@ import AyudaPage from './pages/AyudaPage'
 import CarritoPage from './pages/CarritoPage'
 import MisProductosPage from './pages/MisProductosPage'
 import Footer from './components/PieDePagina'
-import { productsData } from './data/products'
 import { getAllProducts } from './services/fakeStoreApi'
 import { supabase } from './services/supabaseClient'
 
@@ -38,15 +37,14 @@ const convertListedToProduct = (p) => ({
   publishedAt: p.publishedAt,
 })
 
-// Mapeo de categorías de Platzi API (IDs numéricos) a nombres en español
-const PLATZI_CATEGORIES = {
-  '1': 'Ropa',
-  '2': 'Electrónica',
-  '3': 'Muebles',
-  '4': 'Zapatos',
-  '5': 'Otros',
-}
 
+const PLATZI_CATEGORIES = {
+  'electronics': { id: 2, name: 'Electrónica' },
+  'clothes': { id: 1, name: 'Ropa' },
+  'furniture': { id: 3, name: 'Muebles' },
+  'shoes': { id: 4, name: 'Zapatos' },
+  'miscellaneous': { id: 5, name: 'Otros' },
+}
 
 function AppContent() {
   const location = useLocation()
@@ -103,39 +101,29 @@ function AppContent() {
     localStorage.setItem('ml_favorites', JSON.stringify(favorites))
   }, [favorites])
 
-  // Cargar productos locales al iniciar y mezclar con publicados en localStorage
+  // Cargar productos de Platzi API al iniciar
   useEffect(() => {
     const loadInitialProducts = async () => {
       setIsLoading(true)
       try {
-        console.log('🚀 Iniciando carga de productos...')
-        
-        // Intentar FakeStore (pero probablemente fallará por CORS en producción)
-        const fakeStoreProducts = await getAllProducts()
-        console.log('📦 Productos de FakeStore:', fakeStoreProducts?.length || 0)
+        // Cargar de Platzi API
+        const platziProducts = await getAllProducts()
         
         // Obtener productos publicados localmente
         const listedRaw = JSON.parse(localStorage.getItem('ml_listed_products') || '[]')
         const listedConverted = listedRaw.map(convertListedToProduct)
-        console.log('📝 Productos publicados localmente:', listedConverted.length)
         
-        // Usar FakeStore si hay productos, si no usar datos locales
-        const base = (fakeStoreProducts && fakeStoreProducts.length > 0) ? fakeStoreProducts : productsData
-        console.log(`📚 Usando ${base === fakeStoreProducts ? 'FakeStore' : 'datos locales'}:`, base.length, 'productos')
-        
-        const all = [...listedConverted, ...base]
-        console.log('✅ Total de productos a mostrar:', all.length)
+        // Solo usar Platzi API, más productos locales publicados
+        const all = [...listedConverted, ...platziProducts]
         
         setProducts(all)
         setFilteredProducts(all)
       } catch (error) {
-        console.error('❌ Error cargando productos:', error)
+        console.error('Error cargando productos:', error)
         const listedRaw = JSON.parse(localStorage.getItem('ml_listed_products') || '[]')
         const listedConverted = listedRaw.map(convertListedToProduct)
-        const all = [...listedConverted, ...productsData]
-        console.log('⚠️ Usando fallback. Total productos:', all.length)
-        setProducts(all)
-        setFilteredProducts(all)
+        setProducts(listedConverted)
+        setFilteredProducts(listedConverted)
       } finally {
         setIsLoading(false)
       }
@@ -188,11 +176,20 @@ function AppContent() {
     } else if (category === 'ofertas') {
       filtered = products.filter(product => product.originalPrice && product.originalPrice > product.price)
     } else {
-      // Filtrar por categoryId que viene del menú (valores '1', '2', '3', '4', '5')
-      filtered = products.filter(product => {
-        // Comparar por ID de categoría (más confiable que por nombre)
-        return String(product.categoryId) === String(category)
-      })
+      // Buscar por categoría de Platzi
+      const categoryId = PLATZI_CATEGORIES[category]?.id
+      if (categoryId) {
+        filtered = products.filter(product => {
+          // Para productos de Platzi, buscar por categoryId
+          if (product.source === 'platzi') {
+            return product.categoryId === categoryId
+          }
+          // Para productos publicados localmente
+          return product.category === category
+        })
+      } else {
+        filtered = products
+      }
     }
     setSelectedCategory(category)
     setFilteredProducts(filtered)

@@ -34,17 +34,18 @@ export default function Navbar({ onSearch, isLoggedIn, user = null, onLoginClick
   const navigate = useNavigate()
   const location = useLocation()
 
-  // Categorias reales de FakeStore API
+  // Categorias de Platzi API
   const categories = [
-    { id: 'todos', name: 'Todos', apiName: null },
-    { id: 'electronics', name: 'Electronica', apiName: 'electronics' },
-    { id: 'jewelery', name: 'Joyeria', apiName: 'jewelery' },
-    { id: "men's clothing", name: "Hombre", apiName: "men's clothing" },
-    { id: "women's clothing", name: "Mujer", apiName: "women's clothing" },
+    { id: 'todos', name: 'Todos', apiId: null },
+    { id: 'electronics', name: 'Electrónica', apiId: 2 },
+    { id: 'clothes', name: 'Ropa', apiId: 1 },
+    { id: 'furniture', name: 'Muebles', apiId: 3 },
+    { id: 'shoes', name: 'Zapatos', apiId: 4 },
+    { id: 'miscellaneous', name: 'Otros', apiId: 5 },
   ]
 
-  const handleCategorySelect = (apiName) => {
-    onCategorySelect(apiName || 'todos')
+  const handleCategorySelect = (categoryId) => {
+    onCategorySelect(categoryId || 'todos')
     setShowCategoryDropdown(false)
   }
 
@@ -174,7 +175,7 @@ export default function Navbar({ onSearch, isLoggedIn, user = null, onLoginClick
                       <button
                         key={category.id}
                         onClick={() => {
-                          handleCategorySelect(category.apiName || 'todos')
+                          handleCategorySelect(category.id)
                         }}
                         className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-ml-yellow hover:text-ml-blue font-medium transition first:rounded-t-lg last:rounded-b-lg"
                       >
@@ -190,9 +191,6 @@ export default function Navbar({ onSearch, isLoggedIn, user = null, onLoginClick
               </button>
               <button onClick={() => onCategorySelect('todos')} className="text-sm text-gray-700 hover:text-ml-blue font-medium transition hidden lg:block">
                 Cupones
-              </button>
-              <button onClick={() => handleCategorySelect("women's clothing")} className="text-sm text-gray-700 hover:text-ml-blue font-medium transition">
-                Moda
               </button>
               <Link to="/vender" className="text-sm text-gray-700 hover:text-ml-blue font-medium transition">
                 Vender
@@ -318,7 +316,7 @@ export default function Navbar({ onSearch, isLoggedIn, user = null, onLoginClick
           {categories.map(category => (
             <button
               key={category.id}
-              onClick={() => { handleCategorySelect(category.apiName || 'todos'); setMobileMenuOpen(false) }}
+              onClick={() => { handleCategorySelect(category.id); setMobileMenuOpen(false) }}
               className="block w-full text-left py-2 text-sm text-gray-700 hover:text-ml-blue font-medium transition"
             >
               {category.name}
@@ -329,7 +327,6 @@ export default function Navbar({ onSearch, isLoggedIn, user = null, onLoginClick
         {/* Nav links */}
         <div className="p-4 border-b border-gray-100 space-y-1">
           <button onClick={() => { onCategorySelect('ofertas'); setMobileMenuOpen(false) }} className="block w-full text-left py-2 text-sm text-gray-700 hover:text-ml-blue font-medium transition">Ofertas</button>
-          <button onClick={() => { handleCategorySelect("women's clothing"); setMobileMenuOpen(false) }} className="block w-full text-left py-2 text-sm text-gray-700 hover:text-ml-blue font-medium transition">Moda</button>
           <Link to="/vender" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-sm text-gray-700 hover:text-ml-blue font-medium transition">Vender</Link>
           <Link to="/ayuda" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-sm text-gray-700 hover:text-ml-blue font-medium transition">Ayuda</Link>
         </div>
