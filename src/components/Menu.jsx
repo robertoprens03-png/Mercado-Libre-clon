@@ -3,11 +3,11 @@ export default function Menu({ onCategorySelect, selectedCategory }) {
   // Platzi devuelve: 1=Clothes, 2=Electronics, 3=Furniture, 4=Shoes, 5=Miscellaneous
   const categories = [
     { id: 'todos', name: 'Todos', apiName: null },
-    { id: '2', name: '🔌 Electrónica', apiName: '2' },
-    { id: '1', name: '👕 Ropa', apiName: '1' },
-    { id: '3', name: '🛋️ Muebles', apiName: '3' },
-    { id: '4', name: '👟 Zapatos', apiName: '4' },
-    { id: '5', name: '🎁 Otros', apiName: '5' },
+    { id: '2', name: 'Electrónica', apiName: '2' },
+    { id: '1', name: 'Ropa', apiName: '1' },
+    { id: '3', name: 'Muebles', apiName: '3' },
+    { id: '4', name: 'Zapatos', apiName: '4' },
+    { id: '5', name: 'Otros', apiName: '5' },
   ]
 
   return (

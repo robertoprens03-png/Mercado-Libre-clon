@@ -188,15 +188,11 @@ function AppContent() {
     } else if (category === 'ofertas') {
       filtered = products.filter(product => product.originalPrice && product.originalPrice > product.price)
     } else {
-      // Platzi API usa números como IDs de categoría
-      const categoryId = category
-      const categoryName = PLATZI_CATEGORIES[categoryId] || category
-      
+      // Platzi API devuelve categoría como nombre string en la transformación
+      // El ID se convierte al nombre en transformPlatziProducts
       filtered = products.filter(product => {
-        // Buscar por categoría exacta o por nombre de categoría
-        return product.category === categoryId || 
-               product.category === categoryName ||
-               product.category === parseInt(categoryId)
+        // Comparar por nombre de categoría (ya transformado)
+        return String(product.category).toLowerCase() === String(PLATZI_CATEGORIES[category] || category).toLowerCase()
       })
     }
     setSelectedCategory(category)
